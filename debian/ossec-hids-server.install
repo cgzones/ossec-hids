@@ -1,0 +1,37 @@
+src/ossec-logcollector var/ossec/bin
+src/ossec-syscheckd var/ossec/bin
+src/ossec-execd var/ossec/bin
+src/manage_agents var/ossec/bin
+contrib/util.sh var/ossec/bin
+
+debian/ossec-control var/ossec/bin
+debian/ossec.conf var/ossec/etc
+
+etc/internal_options.conf var/ossec/etc
+src/rootcheck/db/*.txt var/ossec/etc/shared
+src/agentlessd/scripts/* var/ossec/agentless/
+active-response/*.sh var/ossec/active-response/bin/
+active-response/firewalls/*.sh var/ossec/active-response/bin/
+
+src/ossec-agentlessd var/ossec/bin
+src/ossec-analysisd var/ossec/bin
+src/ossec-monitord var/ossec/bin
+src/ossec-reportd var/ossec/bin
+src/ossec-maild var/ossec/bin
+src/ossec-remoted var/ossec/bin
+src/ossec-logtest var/ossec/bin
+src/ossec-csyslogd var/ossec/bin
+src/ossec-authd var/ossec/bin
+src/ossec-dbd var/ossec/bin
+src/ossec-makelists var/ossec/bin
+src/verify-agent-conf var/ossec/bin
+src/clear_stats var/ossec/bin
+src/list_agents var/ossec/bin
+src/ossec-regex var/ossec/bin
+src/syscheck_update var/ossec/bin
+src/agent_control var/ossec/bin
+src/syscheck_control var/ossec/bin
+src/rootcheck_control var/ossec/bin
+
+etc/rules/*.xml var/ossec/rules
+etc/decoder.xml var/ossec/etc

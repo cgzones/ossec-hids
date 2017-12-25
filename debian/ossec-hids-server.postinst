@@ -1,0 +1,37 @@
+#!/bin/sh
+
+set -eu
+
+if [ "$1" = "configure" ]; then
+  adduser --system --group --quiet --gecos "ossec daemon" --no-create-home --home /var/ossec ossec
+  adduser --system --ingroup ossec --quiet --gecos "ossec mail daemon" --no-create-home --home /var/ossec ossecm
+  adduser --system --ingroup ossec --quiet --gecos "ossec remote daemon" --no-create-home --home /var/ossec ossecr
+
+  if [ ! -e /var/ossec/logs/active-responses.log ]; then
+    install -m 0660 -o ossec -g ossec /dev/null /var/ossec/logs/active-responses.log
+  fi
+  if [ ! -e /var/ossec/logs/ossec.log ]; then
+    install -m 0660 -o ossec -g ossec /dev/null /var/ossec/logs/ossec.log
+  fi
+
+  install -m 0440 -o root -g ossec /etc/localtime var/ossec/etc
+
+  if [ -e /etc/TIMEZONE ]; then
+    install -m 440 -o root -g ossec /etc/TIMEZONE /var/ossec/etc/
+  fi
+
+  rm -f /var/ossec/etc/shared/merged.mg
+
+  chmod -R o-rwx /var/ossec
+
+  chown -R :ossec /var/ossec /var/ossec/active-response /var/ossec/agentless /var/ossec/bin /var/ossec/rules /var/ossec/var /var/ossec/var/run /var/ossec/etc/shared
+  chown ossec:ossec /var/ossec/etc /var/ossec/etc/shared /var/ossec/stats /var/ossec/logs /var/ossec/queue
+  chown :ossec /var/ossec/tmp /var/ossec/etc/decoder.xml /var/ossec/etc/internal_options.conf
+  chmod 1550 /var/ossec/tmp
+  chmod 770 /var/ossec/var/run
+
+
+
+fi
+
+#DEBHELPER#

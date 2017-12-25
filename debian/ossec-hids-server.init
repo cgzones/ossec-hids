@@ -1,0 +1,52 @@
+#!/bin/sh
+set -eu
+# OSSEC         Controls OSSEC HIDS
+# Author:       Daniel B. Cid <dcid@ossec.net>
+# Modified for Debian by Michael Starks (patch by Costas Drogos)
+
+### BEGIN INIT INFO
+# Provides:          ossec-hids-server
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Should-Start:      $network
+# Should-Stop:       $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start and stop OSSEC HIDS
+# Description:       Controls OSSEC HIDS daemons
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
+DIRECTORY="/var/ossec"
+
+start() {
+    ${DIRECTORY}/bin/ossec-control start
+}
+
+stop() {
+    ${DIRECTORY}/bin/ossec-control stop
+}
+
+status() {
+    ${DIRECTORY}/bin/ossec-control status
+}
+
+case "$1" in
+start)
+    start
+    ;;
+stop)
+    stop
+    ;;
+restart|force-reload)
+    stop
+    start
+    ;;
+status)
+    status
+    ;;
+*)
+    echo "*** Usage: $0 {start|stop|restart|status}"
+    exit 1
+esac

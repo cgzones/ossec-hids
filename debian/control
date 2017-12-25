@@ -1,0 +1,21 @@
+Source: ossec
+Section: admin
+Priority: optional
+Maintainer: Christian Göttsche <cgzones@googlemail.com>
+Build-Depends: debhelper (>= 11)
+Standards-Version: 4.1.2
+Homepage: https://ossec.github.io/
+Vcs-Git: https://github.com/cgzones/ossec-hids
+Vcs-Browser: https://github.com/cgzones/ossec-hids
+
+Package: ossec-hids-server
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, adduser, lsb-base
+Description: Host based intrusion detection system
+ OSSEC is a free, open-source host-based intrusion detection system (HIDS).
+ It performs log analysis, integrity checking, Windows registry monitoring,
+ rootkit detection, time-based alerting, and active response.
+ It provides intrusion detection for most operating systems, including Linux,
+ OpenBSD, FreeBSD, OS X, Solaris and Windows.
+ OSSEC has a centralized, cross-platform architecture allowing multiple
+ systems to be easily monitored and managed.

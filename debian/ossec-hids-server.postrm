@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -eu
+
+case "$1" in
+  remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+    ;;
+
+  purge)
+    rm -Rf /var/ossec
+    userdel ossecm
+    userdel ossecr
+    userdel ossec
+    ;;
+
+  *)
+    echo "postrm called with unknown argument \`$1'" >&2
+    exit 1
+esac
+
+#DEBHELPER#
